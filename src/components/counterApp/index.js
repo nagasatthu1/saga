@@ -5,6 +5,7 @@ import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 import { addCount, resetCount, subtractCount } from "./action";
 import { makeSelectCount } from "./selector";
+import Header from "../Header";
 
 function CounterApp(props) {
   const { onAdd, onSubtract, onReset, makeCount } = props;
@@ -12,6 +13,7 @@ function CounterApp(props) {
 
   return (
     <>
+      <Header />
       <h1>Counter App</h1>
       <MDBBtn
         size="sm"
