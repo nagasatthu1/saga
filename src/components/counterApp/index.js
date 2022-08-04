@@ -14,8 +14,6 @@ function CounterApp(props) {
     <>
       <h1>Counter App</h1>
       <MDBBtn
-        outline
-        rounded
         size="sm"
         onClick={() => {
           onAdd();
@@ -23,13 +21,23 @@ function CounterApp(props) {
       >
         Add
       </MDBBtn>
-      <MDBBtn outline size="sm" rounded>
+      <MDBBtn
+        size="sm"
+        onClick={() => {
+          onSubtract();
+        }}
+      >
         Subtract
       </MDBBtn>
-      <MDBBtn outline rounded size="sm">
+      <MDBBtn
+        size="sm"
+        onClick={() => {
+          onReset();
+        }}
+      >
         Reset
       </MDBBtn>
-      <input type="text" value="0" />
+      <input type="text" value={makeCount} />
     </>
   );
 }
@@ -41,13 +49,13 @@ const mapStateToProps = createStructuredSelector({
 export const mapDispatchToProps = (dispatch) => {
   return {
     onAdd: () => {
-      dispatch(addCount);
+      dispatch(addCount());
     },
     onSubtract: () => {
-      dispatch(subtractCount);
+      dispatch(subtractCount());
     },
     onReset: () => {
-      dispatch(resetCount);
+      dispatch(resetCount());
     }
   };
 };
