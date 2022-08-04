@@ -13,7 +13,14 @@ function CounterApp(props) {
   return (
     <>
       <h1>Counter App</h1>
-      <MDBBtn outline rounded size="sm">
+      <MDBBtn
+        outline
+        rounded
+        size="sm"
+        onClick={() => {
+          onAdd();
+        }}
+      >
         Add
       </MDBBtn>
       <MDBBtn outline size="sm" rounded>
