@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   MDBNavbar,
   MDBContainer,
@@ -8,20 +8,25 @@ import {
   MDBNavbarLink,
   MDBNavbarToggler,
   MDBNavbarBrand,
-  MDBCollapse
-} from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
+  MDBCollapse,
+} from 'mdb-react-ui-kit';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [showNavColorSecond, setShowNavColorSecond] = useState(false);
   const navigate = useNavigate();
+  const style = {
+    cursor: 'pointer',
+  };
   return (
     <>
       <MDBNavbar expand="lg" dark bgColor="dark">
         <MDBContainer fluid>
           <MDBNavbarBrand
+            className="cusor"
+            style={style}
             onClick={() => {
-              navigate("../");
+              navigate('../');
             }}
           >
             Saga
@@ -40,9 +45,11 @@ export default function Header() {
             <MDBNavbarNav className="me-auto mb-2 mb-lg-0">
               <MDBNavbarItem className="active">
                 <MDBNavbarLink
+                  className="cusor"
+                  style={style}
                   aria-current="page"
                   onClick={() => {
-                    navigate("../");
+                    navigate('../');
                   }}
                 >
                   Home
@@ -50,8 +57,10 @@ export default function Header() {
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBNavbarLink
+                  className="cusor"
+                  style={style}
                   onClick={() => {
-                    navigate("../counter");
+                    navigate('../counter');
                   }}
                 >
                   CounterApp
@@ -59,8 +68,10 @@ export default function Header() {
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBNavbarLink
+                  className="cusor"
+                  style={style}
                   onClick={() => {
-                    navigate("../users");
+                    navigate('../users');
                   }}
                 >
                   User
