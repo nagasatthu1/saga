@@ -19,7 +19,13 @@ export default function Header() {
     <>
       <MDBNavbar expand="lg" dark bgColor="dark">
         <MDBContainer fluid>
-          <MDBNavbarBrand href="#">Saga</MDBNavbarBrand>
+          <MDBNavbarBrand
+            onClick={() => {
+              navigate("../");
+            }}
+          >
+            Saga
+          </MDBNavbarBrand>
           <MDBNavbarToggler
             type="button"
             data-target="#navbarColor02"
@@ -36,7 +42,7 @@ export default function Header() {
                 <MDBNavbarLink
                   aria-current="page"
                   onClick={() => {
-                    navigate("./");
+                    navigate("../");
                   }}
                 >
                   Home
@@ -45,14 +51,20 @@ export default function Header() {
               <MDBNavbarItem>
                 <MDBNavbarLink
                   onClick={() => {
-                    navigate("/counter");
+                    navigate("../counter");
                   }}
                 >
                   CounterApp
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink>User</MDBNavbarLink>
+                <MDBNavbarLink
+                  onClick={() => {
+                    navigate("../users");
+                  }}
+                >
+                  User
+                </MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
           </MDBCollapse>
