@@ -1,28 +1,69 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 import Header from "../Header";
-import { getUsers } from "./action";
+import { deleteUser, getUsers } from "./action";
 import { makeSelectUsers } from "./selector";
 
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn } from "mdb-react-ui-kit";
+
 function Users(props) {
-  const { onGet, makeUsers } = props;
+  const { onGet, onDelete, makeUsers } = props;
   console.log(props);
   const { state } = useLocation;
+  const navigate = useNavigate();
 
   useEffect(() => {
     onGet();
   }, [state]);
 
-  console.log(makeUsers);
-
   return (
-    <div>
+    <>
       <Header />
-      <h1>User Page</h1>
-    </div>
+      <h1>Users</h1>
+      <MDBTable bordered>
+        <MDBTableHead style={{ fontSize: 20 }}>
+          <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Address</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">
+              <MDBBtn>Add</MDBBtn>
+            </th>
+          </tr>
+        </MDBTableHead>
+        {makeUsers.map((item, index) => {
+          return (
+            <MDBTableBody key={index}>
+              <tr>
+                <th scope="row">{item.id}</th>
+                <td>{item.name}</td>
+                <td>{item.avatar}</td>
+                <td>{item.address}</td>
+                <td>{item.birthday}</td>
+                <td>
+                  <MDBBtn color="secondary">Edit</MDBBtn>
+                  <MDBBtn
+                    color="danger"
+                    onClick={() => {
+                      onDelete(item.id);
+                      navigate("../users");
+                    }}
+                  >
+                    Delete
+                  </MDBBtn>
+                </td>
+              </tr>
+            </MDBTableBody>
+          );
+        })}
+      </MDBTable>
+    </>
   );
 }
 
@@ -32,7 +73,8 @@ const mapStateToProps = createStructuredSelector({
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    onGet: () => dispatch(getUsers())
+    onGet: () => dispatch(getUsers()),
+    onDelete: (data) => dispatch(deleteUser(data))
   };
 };
 

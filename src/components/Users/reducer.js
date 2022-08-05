@@ -1,8 +1,16 @@
-import { GET, GET_FAILED, GET_SUCCESS } from "./constants";
+import {
+  DELETE,
+  DELETE_FAILED,
+  DELETE_SUCCESS,
+  GET,
+  GET_FAILED,
+  GET_SUCCESS
+} from "./constants";
 
 const initialState = {
   data: [],
-  error: false
+  error: false,
+  visible: false
 };
 
 function userListReducer(state = initialState, action) {
@@ -23,6 +31,22 @@ function userListReducer(state = initialState, action) {
         error: true
       };
 
+    case DELETE:
+      return {
+        ...state,
+        visible: true
+      };
+    case DELETE_SUCCESS:
+      return {
+        ...state,
+        visible: false
+      };
+    case DELETE_FAILED:
+      return {
+        ...state,
+        error: true,
+        visible: false
+      };
     default:
       return state;
   }
