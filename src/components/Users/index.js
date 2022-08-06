@@ -47,7 +47,14 @@ function Users(props) {
                 <td>{item.address}</td>
                 <td>{item.birthday}</td>
                 <td>
-                  <MDBBtn color="secondary">Edit</MDBBtn>
+                  <MDBBtn
+                    color="secondary"
+                    onClick={() => {
+                      navigate(`../editUser/${item.id}`);
+                    }}
+                  >
+                    Edit
+                  </MDBBtn>
                   <MDBBtn
                     color="danger"
                     onClick={() => {
